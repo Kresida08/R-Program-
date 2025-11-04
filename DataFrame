@@ -1,0 +1,123 @@
+#Creation of DataFrame
+emp<-data.frame(
+  Name=c("Chris","Danny","Emmie","Frank","Grandy","Henry"),
+  Age=c(20,24,27,19,26,29),
+  Score=c(98,92,74,82,90,45)
+)
+emp
+
+#Access data to the dataframe
+#Access to specific column:
+emp$Name
+emp$Age
+emp$Score
+
+#Access to specific row:
+emp[4,] #4nd Row 
+emp[3,] #Row 3rd
+
+#Access to specific element 
+emp[2,3] #2nd Row and 3rd column
+
+#Access to multiple column (Only name and score)
+emp[, c("Name","Score")]
+emp[2, c("Name","Score")] #Will give only 2nd emp specified details
+
+#Adding a New Column
+emp$Grade<- c("A+","A","B","B+","A","C")
+emp
+
+--------------------------------------------------------------------------------
+  
+#Filtering Data
+#Select emp with scores greater than 85
+high <- emp[emp$Score>85,]
+high
+
+--------------------------------------------------------------------------------
+
+#Create a dataframe of students and display First 3 rows and last 2 rows 
+student<- data.frame(
+  name=c("Andy","Bancy","Candy","Danny","Eddy","Eemy"),
+  age=c(25,26,23,19,20,29),
+  score=c(85,90,88,93,78,96)
+  )
+student
+
+#Beginning 3
+head(student,3)
+
+#Ending 2
+tail(student,2)
+
+#Show the strings/structure of the data
+str(student)
+#data.frame':	6 obs. of  3 variables:
+ #$ name : chr  "Andy" "Bancy" "Candy" "Danny" ...
+ #$ age  : num  25 26 23 19 20 29
+ #$ score: num  85 90 88 93 78 96
+#Obs -> 6 observations (Rows)
+#Variables -> 3 columns (Age,Name,Score)
+#Chr -> character type (for name)
+#Num -> numeric type (for age and score)
+
+#Gives u all the mathematical counts like min, max, avg, 1st Quatile, 2nd Quatile 
+#Min, Max, Mean, Median for numerical columns and length, class and mode for character columns
+summary (student)
+
+#Number of Rows
+nrow(student)
+#Number of columns
+ncol(student)
+#Dimension of the table 6 rows 3 columns
+dim(student)
+#Column name
+colnames(student)
+
+--------------------------------------------------------------------------------
+  
+#Practice Task
+students<- data.frame(
+  Name =c("Alice","Bob","Charlie","David","Eva","Frank"),
+  Age=c(20,22,21,23,20,24),
+  Score=c(86,91,89,93,80,96)
+)
+
+students
+
+#Add a new column and Pass if student with >=90 or else fail
+students$Result <- ifelse(students$Score>=90, "Pass","Fail")
+
+#Student who passed
+pass <- students[students$Result=="Pass",]
+
+#Name and Score of student who passed
+passed <- subset(students,students$Result=="Pass",select = c(Name,Score))
+
+#Calculate the avg score of all the students who passed
+avg <- mean(students$Score[students$Result == "Pass"])
+
+#Sort in Descending order of Score
+desc <- students[order(students$Score, decreasing = T),]
+--------------------------------------------------------------------------------
+#Structure of the data frame
+off <-data.frame(
+    Name=c("Charity","Denty","Emile","Frank","Grace","Herminy"),
+    Age=c(20,24,27,19,26,29),
+    Score=c(98,92,74,82,90,45)
+  )
+off
+str(off) 
+structure(off) #Gives u the DF mentioned by u
+
+rbind(emp,off)
+
+
+
+
+
+
+
+
+
+

@@ -43,17 +43,13 @@ print (X&Y)
 print (X | Y)
 print (!Y)
 
-
 (54>43) & (30<45) #Will give true only if both the condition will get satisfied
 (5>6)|(6>4) #Will give o/p evn if 1 condition gets satisfied
 !(78<32) #Will return the opposite of wht u mention 
 
- 
-# (& AND will return True if both the values are right/ ' or | OR will return True if any 1 condition is satisfied/ ! NOT will return True if say eg:!76<65 it will return True)
-
+# ('&' AND will return True if both the values are right' or '|' OR will return True if any 1 condition is satisfied/ '!' NOT will return True if say eg:!76<65 it will return True)
 
 #Assignment Operator
-
 
 #Assign Left (assign 10 to x)
 x<-10
@@ -66,22 +62,18 @@ b = 45
 c <- a+b
 print(c)
 
-
 #Special Operators
 #a.Sequence operator
 100:300
 
-
 #Membership Operator
 52 %in% (40:50)
-
 
 #Matrix Multiplication
 a <- matrix (c (10,11,12,13,14), nrow = 2 , ncol = 2)
 b <- matrix (c (2,3,4,5,6), nrow = 2 , ncol = 2 )
-c <- a%*%b
+c <- a%*%b #Takes normal multiplication no matrix multiplication
 print(c)
-
 
 #Miscellaneous Operators
 #It gives the same number as o/p
@@ -91,13 +83,11 @@ x
 y <- (100:130)
 y
 
-
-#Area of a Rect with Length=7 Width=3
+#Area of a Rect with Length=70 Width=20
 a <- 70
 b <- 20
 c <- a*b
 c
-
 
 #Number divisible by 3 by modulus operator
 a <- 66
@@ -109,4 +99,29 @@ c
 a <- 34
 b <- 9
 (a<10) & (b>10)
+
+#What is the Difference between & and && ??
+&: (Name) Vectorized AND, (Type) Element Wise, (Works on) Vectors, (Purpose) Compares each element of two Logical vectors.
+When to use: Working with vectors or data frames (row-wise comparisons).
+&&: (Name) Short Circuit AND, (Type) Single, (Works on) Single Values only, (Purpose) Compares only the first element of each logical vector.
+When to use: Logical tests in if, while, or ifelse conditions.
+
+x <- c(TRUE, FALSE, TRUE)
+y <- C(TRUE, TRUE, FALSE)
+x&y
+#O/P: TRUE, FALSE, FALSE
+Explaination : True & True gives me True, False and True gives me False, True and False gives me False.
+
+x&&y
+#O/P: TRUE
+Explaination : It only checks the first element of each vector (x[1] and y[1]) → TRUE & TRUE → TRUE.
+It ignores the rest.
+
+#Example of wrong v/s right use
+x <- c(TRUE, FALSE, TRUE)
+#Wrong: gives warning or unwanted behavior
+if (x & TRUE) print("Yes")
+#Correct:
+if (x && TRUE) print("Yes")
+Because IF() expects a single TRUE/FALSE, not a vector
 

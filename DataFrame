@@ -94,6 +94,14 @@ pass <- students[students$Result=="Pass",]
 #Name and Score of student who passed
 passed <- subset(students,students$Result=="Pass",select = c(Name,Score))
 
+#What is a Subset?
+It is a function in R used to extract specific row and columns from a dataframe based on condition.
+subset(x,subset,select)
+x: The dataframe or vector you are subsetting.
+subset: The condition (which Rows to keep).
+select: The columns you want to keep.
+#You can do the same with dplyr
+
 #Calculate the avg score of all the students who passed
 avg <- mean(students$Score[students$Result == "Pass"])
 
@@ -107,17 +115,8 @@ off <-data.frame(
     Score=c(98,92,74,82,90,45)
   )
 off
-str(off) 
+str(off) #Gives the Structure
 structure(off) #Gives u the DF mentioned by u
-
-rbind(emp,off)
-
-
-
-
-
-
-
 
 
 

@@ -1,0 +1,74 @@
+install.packages("ggplot2")
+
+#View column n rows in the data
+library(ggplot2)
+
+mtcars
+data<-mtcars
+data
+
+#GGPLOT- u will have to work with chatgpt giving the column name and prompting with correct code 
+
+#Chat GPT
+p1<- ggplot(data=data,aes(x=mpg,y=hp))+
+  geom_line()
+
+ggplot(mtcars,aes(x=wt,y=mpg))+
+  geom_point(color="blue",size=3)+
+  labs(title="MPG vs Car Weight",
+       x="Weight (1000 lbs)",
+       y= "Miles per Gallon")+
+  theme_minimal()
+
+#Point Graph
+p2<- ggplot(data = mtcars,aes(x = hp, y = mpg, color = factor(cyl), size = wt)) +
+  geom_point(alpha = 0.8) +
+  labs(title = "Fuel Efficiency by Horsepower, Cylinders, and Weight",
+       x = "Horsepower (hp)",
+       y = "Miles per Gallon (mpg)",
+       color = "Cylinders",
+       size = "Weight (1000 lbs)") +
+  theme_classic()
+
+#Stat Summary
+p3<- ggplot(mtcars, aes(x = factor(cyl), y = mpg, fill = factor(cyl))) +
+  stat_summary(fun = mean, geom = "bar") +
+  labs(title = "Average MPG by Cylinder", x = "Cylinders", y = "Average MPG") +
+  theme_light()
+
+#Box Plot
+p4<- ggplot(mtcars, aes(x = factor(cyl), y = mpg, fill = factor(cyl))) +
+  geom_boxplot() +
+  labs(title = "MPG Distribution by Cylinders", x = "Cylinders", y = "MPG") +
+  theme_bw()
+
+#Histogram Plot
+p5<- ggplot(mtcars, aes(x = hp)) +
+  geom_histogram(binwidth = 30, fill = "steelblue", color = "black") +
+  labs(title = "Distribution of Horsepower", x = "Horsepower", y = "Count") +
+  theme_minimal()
+
+#Density Plot
+p6<- ggplot(mtcars, aes(x = mpg, fill = factor(cyl))) +
+  geom_density(alpha = 0.6) +
+  labs(title = "Density of MPG by Cylinder Type", x = "Miles per Gallon", fill = "Cylinders") +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+#Line Plot
+p7<- ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_line(color = "darkgreen", linewidth = 1) +
+  geom_point(color = "black") +
+  labs(title = "MPG vs Weight", x = "Weight (1000 lbs)", y = "Miles per Gallon") +
+  theme_classic()
+
+#Facet Plot
+p8<- ggplot(mtcars, aes(x = hp, y = mpg)) +
+  geom_point(color = "tomato", size = 3) +
+  facet_wrap(~cyl) +
+  labs(title = "MPG vs HP (Faceted by Cylinders)", x = "Horsepower", y = "MPG") +
+  theme_bw()
+
+
+
+

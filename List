@@ -1,0 +1,178 @@
+#What is List?
+In R, a list is a data structure that can hold elements of different datatypes, such as numbers, strings, vectors, matrices, other lists, or even functions. 
+Lists are flexible and widely used in R for grouping related but heterogeneous data together.
+Key Components of List:
+1.Create a List: Use the list() function.
+2.Access Elements: Use single [[]] or $ for accessing elements.
+3.Modify Lists: Add, remove, or update elements.
+4.Nested Lists: A list can contain other lists.
+5.Named Lists: Assign names to list elements for easy reference.
+
+#1.Create a list
+lst_1 <- list(32, "Mine", c(10,11,12,13), FALSE)
+print(lst_1)
+
+#2. Create a Named List
+#What is a Named List? 
+#-> Assign easy names to the list elements for easy referencing.
+named_lst_1 <- list(name = "Khushi", age = 20, score = c(95,88,76))
+print(named_lst_1)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+#3. Access Elements of a List
+print(named_lst_1[[1]]) #Access to 1st element of the list 
+print(named_lst_1$name) #Access to only name from the list
+print(named_lst_1$score) #Access to only score from the list
+print(named_lst_1$age) #Access to only age from the list
+print(named_lst_1$score[1]) #Access a part of the vector inside the list
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+#4. Modify a list
+#Add a new element to the list
+named_lst_1$passed <- TRUE
+print (named_lst_1)
+#Update an element from the list
+named_lst_1$age <- 25
+named_lst_1$name <- "John"
+#Remove an element 
+named_lst_1$failed <- NULL
+print(named_lst_1)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+#5. Nested List
+nest <- list(
+  info = list(name="Bob", age=30),
+  scores = list(math=90,english=75,Com=65)
+)
+print(nest)
+print(nest$scores$english)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+#1. Combining List (You can combine list into one using the c() function)
+lst_1 <- list(Name="Addy",Age=31)
+lst_2 <- list(Score=c(87,90,78,96), passed=TRUE)
+combine <- c(lst_1,lst_2) #Combining into a single list
+
+#mapply and Map
+list1<- list(10,11,12,13) #use mapply() or Map() when lists have same length.
+list2<- list(20,21,22) #If not same element then moves to the 1st element of the list
+combined <- Map(c,list1, list2)
+combined
+
+#Convert list of lists into a single list (unlist the list created)
+mylist <- list(list(100,200), list(300,400)) #[[1]][[2]] means 2nd element from the 1st list
+com <- unlist(mylist, recursive= TRUE) #False will make different list, True will combine in 1 list
+com <- unlist(mylist, recursive = FALSE)
+com
+unlist(list1) #Convert to 1 list with no comma 
+
+#Combine lists and preserve names
+lst1 <- list(a=10, b=20)
+lst2 <- list(b=100, c=200)
+#Will not take smaller value of b replace b value with greater value
+combined <- modifyList(lst1, lst2) 
+combined
+
+append (lst_1,lst_2)
+#Join lists together- c(), Combine element-wise- Map(), Flatten nested lists- unlist(recursive=FALSE), Replace duplicate names- modifyList()
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+#2. Check the structure of the list whether it has str, num and logic.
+str(combine)
+class(lst1)
+typeof(lst1)
+length(lst1) #the number of char in the list.
+summary(lst1) #Length Class and Mode will b shown.
+names(lst1) #Gives the name of the number or say variable that is assigned with the number
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+#3. Apply a function to all elements of a list. Use the lapply() function to apply a function to each element of a list.
+ 
+number <- list(a=100:140,b=160:200,c=210:250)
+print(number)
+
+#apply mean (a fucntion) to each element of the list.
+means <- lapply(number,mean) 
+sum <- sapply(number, sum) #Will return a vector or matrix when possible.
+flat <- vapply(number, sum, numeric(1)) #The output type will be specific numeric with 1.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+#4. Flatten a List. Use unlist() to convert a list into a single vector.
+flat <- unlist(number) 
+mylst<- list(1,2,list(3,4))
+unlist(mylst)
+#Unlist will flatten completely. Turns the entire list into one atomic vector.
+flat1<- unlist(mylst, recursive = FALSE)
+does<- do.call(c, mylst)
+#If true o/p will be (1,2,3,4), if false o/p will be 1 enter 2 enter 3... will flatten just one level.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+#5. Filter list element (NOTE: Capital F is used in normal Filter small f is used in GGPLOT)
+number <- list(a=100:140,b=160:200,c=210:250)
+filter <- Filter(function(a) a>22, number$c) #filter is allies name and Filter is function name
+print(filter)
+#Filter using lapply + condition (returns the vector with more than 30 values as specified)
+filtered <- number[lapply(number, length)>30]
+filtered
+#Filter by name (output keeps only a and c and not b)
+filter1<- number[names(number) !="b"]
+#Filter based on element content (the number 25 should be in the list then only the o/p will be returned or else the o/p will be blank)
+my_lst <- list(a=c(10,15), b=c(20,25), c=30)
+fil <- my_lst[sapply(my_lst,function(x) 25 %in% x)]
+#Filter using tidyverse
+library(purrr) #Install the package first with install.packages(purrr) then use the library
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+#6. Sort a List (will sort the numbers within the list not all individually)
+#Sort element INSIDE each list item
+qty <- list(a=c(12,25,65,34),b=c(4,9,2,10),c=c(100,24,87,99))
+sorted <- lapply(qty,sort)
+sorted
+#Sort a list BY NAMES
+name<-list(i=c(10,20,30),f=c(20,30,40),l=c(40,50,60))
+sort_byname <- name[order(names(name))]
+#Sort a list BY VALUE (Ascending Order)
+lst<- list(a=70, b=50, c=90)
+sort_byvalue <- lst[order(unlist(lst))]
+#Sort a list of vectors by their FIRST element (Ascending order of the numbers in the vector)
+sort <- qty[order(sapply(qty, function(x)x[1]))]
+#Sort by the SUM of each list element
+sort_bysum <- qty[order(sapply(qty,sum))] 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+#7. Split data into a list. Use split() to divide a vector into a list based on a grouping factor.
+#split <- split(what u want in o/p , what it will b compares to)
+val <- c(20,25,30,35,40,45)
+grps <- c("A","B","A","B","A","B")
+split_lst <- split(val,grps)
+#Split on bases of A and B those who got A and those who got B
+
+Names <- c("Jack","Sandy","Ruben","John","Ayaan","Harshak")
+Scores <- c(85,98,65,73,60,30)
+Result <- c("Pass","Pass","Fail","Pass","Fail","Fail")
+splt <- split(Names,Result)
+#Output will be names based on Pass and Fail
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+#8.Find the Length of each list element (Use sapply() or lapply() with length)
+suply <- list(a=10:20, b=c("A","B"), c=TRUE)
+lenghts<- sapply(suply, length)
+print(lenghts)
+
+name <- list (x=c(10,20,35,45), y=c("Amit","Sumit"), z=50.9)
+len <- sapply(name, length)
+print(len)
+
+my_lst <- list(10, 20, 30, "R")
+length(my_lst) #Gives the length of the list
+unlist(my_lst) #Convert list to a vector
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+#Assignment
+  #Create a List
+employee_ID <- list (per_details=list(name = "Ayesha", age=34, gender="Female"),
+                     job_details=list(department="HR", designation="Manager",Salary=75000),
+                     performance_score=list("Communication"=85, "Leadership"=90, "Punctuality"=88))
+print(employee_ID)
+
+design <- employee_ID$job_details$designation
+design
+
+employee_ID$job_details$Salary<-80000
+employee_ID
+
+employee_ID$contact_info <- list (phone = "9785634120", email = "ayesha.hr@company.com")
+employee_ID
+
+
+
+

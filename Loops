@@ -1,0 +1,79 @@
+#FOR Loop
+for (i in 10:25){
+  print(paste("This is number", i))
+}
+--------------------------------------------------------------------------------
+#WHILE Loop
+counter <- 29
+while (counter <= 40) {
+  print(paste("Counter is", counter))
+  counter <- counter + 1
+}
+--------------------------------------------------------------------------------
+#REPEATE Loop
+#Works till the condition turns TRUE, once turned True it breaks
+value <- 48
+repeat{
+  print(paste("Value is", value))
+  value <- value + 1
+  if (value > 60){
+    break
+  }
+}
+#See tht count is >15 if no then add 1 till the condition gets satisfied 
+count = 10
+repeat{
+  print(paste("Number", count))
+  count = count+1
+  if (count > 15){
+    break
+  }
+}
+#20 is > to 15 then it won't work for any number it breaks there
+count = 20
+repeat{
+  print(paste("Number", count))
+  count = count+1
+  if (count > 15){
+    break
+  }
+}
+--------------------------------------------------------------------------------
+#Control Statement
+#Using Break: (Once i is equal to 15 it stops)
+for (i in 10:30){
+  if (i==15){
+    break
+  }
+  print(i)
+}
+--------------------------------------------------------------------------------
+#Using Next: (Once x is equal to 25 it gets skipped and the rest is given in o/p)
+for (x in 20:30){
+  if (x==25){
+    next
+  }
+  print(x)
+}
+--------------------------------------------------------------------------------
+#Nested Loop
+for (y in 1:5){
+  for (z in 26:30){
+    print (paste("y =",y,", z =",z))
+  }
+}
+
+for(i in 1:3){
+  for(j in 1:5){
+    print(paste(i, "*", j ,"=",i*j))
+  }
+}
+
+for (a in 10:15){
+  for (b in 5:10){
+    print(paste(a, "/",b,"=",a/b))
+  }
+}
+
+
+

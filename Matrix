@@ -1,0 +1,87 @@
+#Creating a matrix 
+c <- matrix(10:18, nrow = 3, ncol = 3)
+c
+
+#Filling by row
+x <- matrix(25:33, nrow = 3, ncol = 3, byrow = T)
+x
+
+#Accessing elements of the matrix
+c[2,3] #2nd Row and 3rd Column
+c[2,] #Row extraction
+c[,3] #Column extraction
+
+#Matrix elements
+a1 <- matrix(5:13, nrow = 3, ncol = 3, byrow = T)
+a1
+a2 <- matrix(9:17, nrow = 3, ncol = 3, byrow = T)
+a2
+a1+a2 #Addition of num acc to the index no matrix addition
+a1-a2 #Subtraction of num acc to the index no matrix subtraction
+a1*a2 #Multiplication of num acc to the index no matrix
+a1%*%a2 #Matrix multiplication
+
+#Transpose of matrix
+t(a1)
+t(a2)
+
+#Inverse of a matrix (Should be singular and square matrix)
+m<- matrix(c(1,12,3,14,5,16,7,18,9), nrow=3)
+m
+solve(m) #Compute inverse
+
+a <- matrix(c(1,2,2,3),nrow=2)
+solve(a)
+--------------------------------------------------------------------------------
+#Special Matrix
+#1. Identity Matrix
+diag(3)
+
+#2. Diagonal Matrix
+diag(c(10,11,12))
+
+#3. Binding Matrix
+#Column bind
+cbind(a1,a2)
+
+#Row bind
+rbind(a1,a2)
+
+#Apply functions to Matrices
+#Sum of Rows (1 is for row)
+apply(a1,1,sum)
+#Sum of Columns (2 is for columns)
+apply(a1,2,sum)
+
+--------------------------------------------------------------------------------
+  
+#Practical Questions
+marks <- matrix(c(85,90,88,78,85,84,92,88,91),nrow = 3, ncol = 3, byrow = T)
+marks 
+
+#Extract the score of the second student
+marks[2,]
+
+#Extract the score of the second subject
+marks[,2]
+
+#Extract total marks of each student (Row)
+apply (marks,1,sum)
+
+#Extract marks of each subject (Column)
+apply(marks,2,sum)
+
+#Extract avg score for each subject
+apply(marks,2,mean)
+
+--------------------------------------------------------------------------------
+
+#Determinant of the matrix
+mat <- matrix(10:18, nrow = 3, ncol = 3)
+print(mat)
+det(mat)
+
+ma<- matrix(1:4, nrow = 2, ncol = 2)
+ma
+det(ma)
+

@@ -1,0 +1,184 @@
+#IF Statement 
+a <- 15
+if (a>=20){
+print("a is greater then or equal to 20")}
+#IF the above mentioned condition is true thn only value will b returned or blank
+---------------------------------------------------------------------------------
+#IF...ELSE Statement
+b <- 90
+if (b<80){
+  print("b is less than 80")
+}else {print("b is greater than 80")}
+--------------------------------------------------------------------------------
+#IF..ELSE IF..ELSE Statement
+c <- 63
+if (c<35){
+  print("c is less than 35")
+}else if (c>=35 & c<=50){
+  print("c is between 35 and 50")
+}else {
+  print ("c is greater than 50")
+}
+#Self
+line <- 124
+if (line>240){
+  print ("It is a Reflex angle")
+}else if (line<=180 & line>100){
+  print("It is a Acute angle")
+}else {
+  print("It is not a line in the context")
+}
+
+#ifelse()
+j <- c(10,50,30,87)
+ifelse(j>30,"Highest","Lowest")
+--------------------------------------------------------------------------------
+#Switch Statement (use when checking one variable against many cases)
+day <- 4
+result <- switch (day,
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday",
+                  "Saturday",
+                  "Sunday")
+print(result)
+
+x<-3
+switch(x,"One","Two","Three","Four")
+
+#Switch with names:
+choice<-"Watermelon"
+switch(choice,
+       apple="You chose apple",
+       Watermelon="You chose Watermelon",
+       Kiwi="You chose Kiwi",
+       "Unknown choice")
+
+#Using prompt with Switch, readline and as.numeric
+day<- readline(prompt = "Enter a number from the days")
+resu<-switch(day,
+             "1"="Monday",
+             "2"="Tuesday",
+             "3"="Wednesday",
+             "4"="Thursday",
+             "5"="Friday",
+             "6"="Saturday",
+             "7"="Sunday",)
+resu
+
+#Using switch 
+month<- 6
+res <- switch(month,
+              "Jan",
+              "Feb",
+              "Mar",
+              "Apr",
+              "May",
+              "June",
+              "July",
+              "Aug",
+              "Sept",
+              "Oct",
+              "Nov",
+              "Dec")
+print(res)
+
+#Numeric function in sum's also a part of switch+prompt
+a <- as.numeric(readline(prompt = "Enter a number"))
+b <- as.numeric(readline(prompt = "Enter a number"))
+c <- readline (prompt = "Enter opertaion sum,sub,product,div")
+result<- switch(c,
+                "sum"=a+b,
+                "sub"=a-b,
+                "div"=a/b,
+                "product"=a*b,)
+result
+--------------------------------------------------------------------------------
+#As in numeric with prompt
+age <- as.numeric(readline(prompt = "Enter your age")) 
+if (age>18){
+  print("You can vote")
+}else {print ("You can't vote")}
+
+marks <- as.numeric(readline(prompt = "Enter your marks")) 
+#Can use the prompt option or the option below 
+marks<-98
+if (marks > 80){
+  print ("A Grade")
+}else if (marks >70){
+  print ("B Grade")
+}else if (marks <60){
+  print ("C Grade")
+}else {
+  print("Fail")}
+
+#Numeric vector prompt labels
+mrks<- c(39,20,40,46,65,90)
+ifelse(mrks >= 59, "Pass","Fail")
+#Numeric Grades-> Multiple Prompts
+scores<-c(95,72,41,89,56)
+grade<-ifelse(scores>=90,"Excellent",
+       ifelse(scores>=70,"Good",
+       ifelse(scores>=50,"Average","Poor")))
+#Numeric to Category Prompt
+temp<-c(15,26,36)
+ifelse(temp<20, "Cold",
+       ifelse(temp<30,"Warm","Hot"))
+#Replace numbers with prompt text
+v<-c(1,0,1,1,0)
+ifelse(v==1,"Yes","No")
+#Numeric Prompting (Keep number or show text)
+x<-c(10,20,30,40,50)
+ifelse(x>25,paste(x,"is high"), paste(x,"is low"))
+
+--------------------------------------------------------------------------------
+#Nested IF with else 
+number <- 237
+if (number>201){
+  if (number %% 2==0){
+    print("Number is greater than 200 but even")
+  }else {
+    print ("Number is greater than 200 but odd")
+  }
+  }else {
+    print ("Number is less than 200")
+  }
+#Traditional way
+x<-80
+if(x>=90){
+  print("Excellent")
+}else if (x>=70){
+  print("Good")
+}else if (x>=50){
+  print("Average")
+}else{
+  print("Poor")
+}
+#Vectorized way
+scores<-c(95,72,40,88,55)
+result<-ifelse(scores>=90,"Excellent",
+               ifelse(scores>=70,"Good",
+                      ifelse(scores>=50,"Average","Poor")))
+
+--------------------------------------------------------------------------------
+#Vectorized IFELSE
+a <- c(100,218,824,523,777,947,771)
+result<- ifelse(a %% 2 ==0,"Even","Odd")
+print(result)
+print(result[[3]])
+
+#Numeric functions in sum
+v<-c(10,20,30,50)
+sum(v)
+#cumsum() Cumulative Sum
+v<- c(50,30,10)
+cumsum(v)
+#sum(as.numeric())
+v<-c(20,30,50)
+sum(as.numeric(v))
+#Sum with na.rm=TRUE
+v<- c(10,30,NA,60)
+sum(v, na.rm = TRUE)
+

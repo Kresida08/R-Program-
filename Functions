@@ -1,0 +1,173 @@
+##Function with default arguments
+power_fun <- function(x,power=2){
+  return(x^ power)
+}
+power_fun(5) #uses default value = 2 (5*5)
+power_fun(5,3) #uses user given value for power (5*5*5)
+#function returning multiple values
+stats_fun<-function(x){
+  list(sum=sum(x),
+       mean=mean(x),
+       sd=sd(x))
+}
+stats_fun(c(10,40,20))
+#anonymous function (without a name)
+sapply(10:20, function(x) x^3) #x^3 and x^2 power of 3 and 2
+#function inside another function
+outer_fun<- function(x){
+  inner_fun<-function(y) y*2
+  inner_fun(x)
+}
+outer_fun(20)
+#using functions with conditions (if-else)
+grade<- function(marks){
+  if(marks>=90){
+    return("A")
+  }else if(marks>=70){
+    return("B")
+  }else {
+    return("C")
+  }
+}
+grade(80)
+grade(65)
+grade(97)
+#Using switch() inside a function
+cal<- function(a,b,op){
+  switch(op,
+         add=a+b,
+         sub=a-b,
+         mul=a*b,
+         div=a/b,
+         "Invalid Operation")
+}
+cal(20,10,"add")
+cal(20,10,"div")
+cal(20,10,"sub")
+cal(20,10,"mul")
+#function with a loop
+sum_loop<-function(x){
+  total<-2
+  for (i in x){
+    total<-total+i
+  }
+  return(total)
+}
+sum_loop(c(10,20,30,40)) #Total ka sign will change (total-i,total*i,total/i,total+i)
+
+##Non parameterized function
+fun<- function (){
+  print ("Hello, Dear, ")
+}
+#Call the function
+fun()
+
+##Single parameterized function
+sq <- function(x){
+  return(x^2)
+}
+result<- sq(12)
+result
+#Farhenheit (#Temp scale)
+to_farhenheit<-function(c){
+  (c*9/5)+32
+}
+to_farhenheit(20)
+
+#Single parameter with return
+cube<-function(n){
+  return(n^3)
+}
+cube(3)
+
+##Default parameterized function
+like<- function(name = "Customer"){
+  print(paste("Hello,", name,"!"))
+}
+
+like ("Leroy") #will take the given value
+like () #will take a default value
+
+##Multiple parameterized function
+#Add
+add <- function(x,y){
+  return(x+y)
+}
+result <- add (153,245)
+result
+
+#Sub
+sub <- function(x,y){
+  return(x-y)
+}
+res <- sub (563,231)
+res
+
+#Multiply
+mul<- function(x,y){
+  return(x*y)
+}
+res <- mul(14,9)
+res
+
+#Division
+div<- function(a,b){
+  return(a/b)
+}
+res <- div(668,12)
+res
+
+##Function with multiple return values
+calculate <- function(a,b){
+  sum <- a+b
+  difference <- a-b
+  product <- a*b
+  quotient <- if (b !=0)a/b else NA
+  
+  return(list(sum = sum, difference =  difference, product = product, quotient = quotient))
+}
+res <- calculate(12,6)
+res
+
+#To access individual results
+print (res$sum)
+print (res$difference)
+print (res$product)
+print (res$quotient)
+#Return multiple values as a Data frame
+multi<- function(x,y){
+  df<- data.frame(
+    sum=x+y,
+    product=x*y
+  )
+  return(df)
+}
+multi(10,7)
+#Return list of vectors (complex results)
+complex<-function(x){
+  return(list(
+    original=x,
+    squared=x^2,
+    cube=x^3
+  ))
+}
+complex(1:4)
+
+##Define & use lambda function inline
+result <- (function(x,y)x+y)(30,46)
+print(result)
+
+#Use a lambda function with lapply (List apply)
+num <- list(20,30,15,75,85,95)
+sq <- lapply(num,function(x)x^2)
+print(sq)
+
+#Factorial_recursive with functions
+factorial <- function(n){
+  if (n==1)
+  {
+    return(1)
+  }else
+    return(n*factorial(n-1))
+}
+factorial(7)
